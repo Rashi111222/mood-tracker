@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import {useState} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+function App(){
+  const [mood,setMood]=useState(""); /*mood=>data, setMood=>Change data*/
+  const [moods,setMoods]=useState([]);
+
+  const addMood=()=>{
+    if(mood==="") 
+      return;
+    setMoods([...moods,mood]);
+    setMood("");
+  };
+    const deleteMood=(indexToDelete)=>{
+      const updateMoods= moods.filter((_,index)=> index!==indexToDelete);
+      setMoods(updateMoods);
+    };
+
+  return(
+    <div className="app">
+      <h1>🌷 Mood Tracker</h1>
+      {/* onChange updates the mood state variable */}
+      <input
+      type="text"
+      placeholder="how do you feel today?"
+      value={mood}
+      onChange={(e)=>setMood(e.target.value)} 
+      />
+
+      <button onClick={addMood}>add</button>
+
+      <div className="gallery">
+        {moods.map((m,index)=>(
+          <div className="card" key={index} >
+            <span className="text"> {m}</span>
+           
+           <button className="delete-btn" 
+                    onClick={()=>deleteMood(index)}>✕</button>
+      </div>
+        ))}
+    </div>
     </div>
   );
 }
