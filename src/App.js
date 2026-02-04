@@ -14,12 +14,21 @@ const moodOptions=[
 function App(){
   const [mood,setMood]=useState(null); /*mood=>data, setMood=>Change data*/
   const [moods,setMoods]=useState([]);
+  const [note,setNote]=useState("");
 
   const addMood=()=>{
     if(!mood) 
       return;
-    setMoods([...moods,mood]);
+
+    const newMood={
+      emoji: mood.emoji,
+      label: mood.label,
+      note : note
+  };
+
+    setMoods([...moods,newMood]);
     setMood(null);
+    setNote("");
   };
     const deleteMood=(indexToDelete)=>{
       const updateMoods= moods.filter((_,index)=> index!==indexToDelete);
@@ -41,6 +50,12 @@ function App(){
         ))}
       </div>
     
+        <input
+        type="text"
+        value={note}
+        className="note"
+        placeholder="write a note (optional)"
+        onChange={(e)=>setNote(e.target.value)}></input>
 
       <button onClick={addMood}>add</button>
 
@@ -50,6 +65,8 @@ function App(){
             <span className="emoji"> {m.emoji}</span>
             <span className="text">{m.label}</span>
            
+            {m.note && <p className="note">{m.note}</p>}
+
            <button className="delete-btn" 
                     onClick={()=>deleteMood(index)}>✕</button>
       </div>

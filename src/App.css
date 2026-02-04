@@ -90,3 +90,10 @@ button{
 .emoji{
   font-size: 30px;
 }
+
+.note{
+  margin-top:8px;
+  font-size:13px;
+  color:#666;
+  font-style:italic;
+}
