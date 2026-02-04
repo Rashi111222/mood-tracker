@@ -65,3 +65,28 @@ button{
   transform: translateY(-5px);
   opacity: 0.85;
 }
+
+.emoji-row{
+  display:flex;
+  gap:12px;
+  margin-bottom: 20px;
+}
+
+.emoji-btn{
+  width:45px;
+  height:45px;
+  border-radius: 50%;
+  border:none;
+  font-size: 22px;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.emoji-btn.active{
+  background: #a7a2ff;
+}
+
+.emoji{
+  font-size: 30px;
+}
